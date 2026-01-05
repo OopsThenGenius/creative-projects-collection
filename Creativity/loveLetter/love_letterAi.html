@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Love Letter 💌</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffd6e0, #ff8fab);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    width: 320px;
+}
+
+h1 {
+    color: #ff4d6d;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Envelope */
+.envelope {
+    width: 260px;
+    height: 160px;
+    background: #ffe5ec;
+    margin: 30px auto;
+    position: relative;
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffb3c6;
+    clip-path: polygon(0 0, 100% 0, 50% 50%);
+    transform-origin: top;
+    transition: 1s;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.letter {
+    position: absolute;
+    bottom: -100%;
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: 1s;
+}
+
+.envelope.open .letter {
+    bottom: 0;
+}
+
+/* Letter text */
+.text {
+    font-size: 14px;
+    color: #444;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💌 Love Letter</h1>
+
+    <input type="text" id="name" placeholder="Enter a name ❤️">
+
+    <button onclick="generate()">Open Letter ✨</button>
+
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="letter">
+            <div class="text" id="letterText"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const letters = [
+    "My dearest {{name}}, every moment with you feels like a beautiful dream I never want to wake up from.",
+    "{{name}}, you are the reason my ordinary days turn into unforgettable memories.",
+    "To {{name}}, loving you is the easiest and happiest thing my heart has ever known.",
+    "{{name}}, if love had a name, it would sound exactly like yours.",
+    "My heart chose you, {{name}}, and it would choose you again in every lifetime."
+];
+
+function generate() {
+    const name = document.getElementById("name").value || "My Love";
+    const envelope = document.getElementById("envelope");
+
+    const random = letters[Math.floor(Math.random() * letters.length)]
+        .replace("{{name}}", name);
+
+    document.getElementById("letterText").innerText = random;
+
+    envelope.classList.add("open");
+}
+</script>
+
+</body>
+</html>

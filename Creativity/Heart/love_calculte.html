@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Calculator 💖</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #ffe6f0;
+    color: #ff1a75;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ff4da6;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background: #ff4da6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  button:hover {
+    background: #ff1a75;
+  }
+
+  .result {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+</style>
+</head>
+<body>
+  <h1>💖 Love Calculator 💖</h1>
+  <input type="text" id="name1" placeholder="Your Name">
+  <input type="text" id="name2" placeholder="Their Name">
+  <button onclick="calculateLove()">Calculate ❤️</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculateLove() {
+      const name1 = document.getElementById("name1").value.trim();
+      const name2 = document.getElementById("name2").value.trim();
+
+      if (!name1 || !name2) {
+        document.getElementById("result").textContent = "Please enter both names!";
+        return;
+      }
+
+      // Simple formula: sum of char codes of names, modulo 101 for percentage
+      let sum = 0;
+      (name1 + name2).split('').forEach(char => {
+        sum += char.charCodeAt(0);
+      });
+      const lovePercentage = sum % 101;
+
+      // Cute messages based on percentage
+      let message = "";
+      if (lovePercentage > 80) {
+        message = "💖 Soulmates alert! 💖";
+      } else if (lovePercentage > 50) {
+        message = "😊 Looking good together!";
+      } else if (lovePercentage > 30) {
+        message = "🤔 Hmm… could work!";
+      } else {
+        message = "😅 Maybe just friends!";
+      }
+
+      document.getElementById("result").innerHTML = 
+        `Love Percentage: <strong>${lovePercentage}%</strong><br>${message}`;
+    }
+  </script>
+</body>
+</html>

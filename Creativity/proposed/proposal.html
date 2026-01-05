@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Marry Me? 💖</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    background: rgba(255,255,255,0.2);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 30px;
+    animation: pop 1s ease;
+}
+
+/* Buttons */
+.buttons {
+    position: relative;
+    height: 80px;
+}
+
+button {
+    padding: 14px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yes {
+    background: #ff006e;
+    color: white;
+    margin-right: 20px;
+}
+
+#no {
+    background: white;
+    color: #ff006e;
+    position: absolute;
+}
+
+/* Message */
+.message {
+    font-size: 2rem;
+    color: white;
+    margin-top: 30px;
+    display: none;
+    animation: fadeIn 1.5s ease;
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 24px;
+    animation: float 5s linear infinite;
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💍 Will you marry me? 💖</h1>
+
+    <div class="buttons">
+        <button id="yes" onclick="sayYes()">Yes 💕</button>
+        <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙈</button>
+    </div>
+
+    <div class="message" id="message">
+        🎉 She said YES! 💍💖<br>
+        Forever starts now ✨
+    </div>
+</div>
+
+<script>
+/* ❤️ Floating Hearts */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(createHeart, 300);
+
+/* 😆 Runaway No Button */
+function moveNo() {
+    const noBtn = document.getElementById("no");
+    const x = Math.random() * 250 - 125;
+    const y = Math.random() * 150 - 75;
+
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+/* 💖 Yes Click */
+function sayYes() {
+    document.querySelector(".buttons").style.display = "none";
+    document.getElementById("message").style.display = "block";
+}
+</script>
+
+</body>
+</html>

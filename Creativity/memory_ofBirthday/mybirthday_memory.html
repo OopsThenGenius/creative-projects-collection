@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Memory Lane 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #fde2e4, #fadadd);
+    color: #4a4a4a;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    margin: 40px 0 10px;
+    font-size: 2.8rem;
+    animation: fadeIn 2s ease;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* ---------- Slider ---------- */
+.slider {
+    width: 80%;
+    max-width: 500px;
+    margin: 40px auto;
+    position: relative;
+}
+
+.slider img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    animation: fadeIn 1s ease;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+button {
+    padding: 8px 18px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 20px;
+    background: #ff6f91;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* ---------- Timeline ---------- */
+.timeline {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: left;
+}
+
+.memory {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    animation: slideUp 1s ease;
+}
+
+.year {
+    font-weight: bold;
+    color: #ff4d6d;
+}
+
+/* ---------- Final Message ---------- */
+.final {
+    margin: 60px 20px;
+    font-size: 1.8rem;
+    display: none;
+    animation: pop 1.2s ease;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>📸 Memory Lane</h1>
+<div class="subtitle">Every year, every smile, every moment 💫</div>
+
+<!-- 🎵 Background Music -->
+<audio id="music" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 📷 Photo Slider -->
+<div class="slider">
+    <img id="slide" src="https://picsum.photos/500/300?random=1">
+    <div class="controls">
+        <button onclick="prev()">⬅</button>
+        <button onclick="next()">➡</button>
+    </div>
+</div>
+
+<!-- 🕰️ Timeline -->
+<div class="timeline">
+    <div class="memory">
+        <div class="year">2018</div>
+        The year of new beginnings and fearless dreams ✨
+    </div>
+
+    <div class="memory">
+        <div class="year">2020</div>
+        Tough times, but your strength shined brighter than ever 🌟
+    </div>
+
+    <div class="memory">
+        <div class="year">2023</div>
+        Growth, laughter, and unforgettable memories 💖
+    </div>
+
+    <div class="memory">
+        <div class="year">2025</div>
+        Becoming everything you once wished for 🌸
+    </div>
+</div>
+
+<button onclick="showFinal()">💌 One Last Thing</button>
+
+<div class="final" id="final">
+    🎂 Happy Birthday 🎉<br><br>
+    May your future be filled with love, peace,<br>
+    and moments even more beautiful than these ❤️✨
+</div>
+
+<script>
+/* ---------- Slider Logic ---------- */
+const images = [
+    "https://picsum.photos/500/300?random=1",
+    "https://picsum.photos/500/300?random=2",
+    "https://picsum.photos/500/300?random=3",
+    "https://picsum.photos/500/300?random=4"
+];
+
+let index = 0;
+const slide = document.getElementById("slide");
+
+function next() {
+    index = (index + 1) % images.length;
+    slide.src = images[index];
+}
+
+function prev() {
+    index = (index - 1 + images.length) % images.length;
+    slide.src = images[index];
+}
+
+/* Auto Slide */
+setInterval(next, 4000);
+
+/* ---------- Final Message ---------- */
+function showFinal() {
+    document.getElementById("final").style.display = "block";
+}
+</script>
+
+</body>
+</html>

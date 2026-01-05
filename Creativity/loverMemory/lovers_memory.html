@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Love Story 💞</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #ffe5ec, #fff);
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    color: #ff4d6d;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* Timeline */
+.timeline {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+}
+
+.event {
+    background: white;
+    margin: 40px 0;
+    padding: 20px 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s ease;
+    position: relative;
+}
+
+/* Visible on scroll */
+.event.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.event h2 {
+    color: #ff4d6d;
+    margin-bottom: 10px;
+}
+
+/* Heartbeat */
+.heart {
+    font-size: 26px;
+    display: inline-block;
+    animation: heartbeat 1.2s infinite;
+    margin-left: 5px;
+}
+
+/* Special highlight */
+.event.special {
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    color: white;
+}
+
+.event.special h2 {
+    color: white;
+}
+
+/* Animations */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>💞 Our Love Story</h1>
+    <p>From the first hello to forever ✨</p>
+</header>
+
+<section class="timeline">
+
+    <div class="event">
+        <h2>First Meet <span class="heart">❤️</span></h2>
+        <p>The day two strangers became something more.  
+        A simple moment that changed everything.</p>
+    </div>
+
+    <div class="event">
+        <h2>First Conversation 💬</h2>
+        <p>Hours felt like minutes.  
+        Laughter, curiosity, and instant comfort.</p>
+    </div>
+
+    <div class="event">
+        <h2>First Date 🌸</h2>
+        <p>Nervous smiles, stolen glances,  
+        and a memory that still makes us smile.</p>
+    </div>
+
+    <div class="event">
+        <h2>Growing Together 🌱</h2>
+        <p>Through ups and downs, we learned,  
+        healed, and grew — side by side.</p>
+    </div>
+
+    <div class="event special">
+        <h2>The Proposal 💍 <span class="heart">❤️</span></h2>
+        <p>A promise made with love,  
+        a future chosen together — forever.</p>
+    </div>
+
+</section>
+
+<script>
+/* Scroll Animation */
+const events = document.querySelectorAll('.event');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.3 });
+
+events.forEach(event => observer.observe(event));
+</script>
+
+</body>
+</html>

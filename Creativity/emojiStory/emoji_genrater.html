@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emoji Story Generator 😍</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container {
+    background: rgba(255,255,255,0.2);
+    padding: 40px 30px;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    max-width: 350px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #ff4d6d;
+    margin-bottom: 20px;
+}
+
+/* Story display */
+#story {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+/* Generate Button */
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #ff4d6d;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Floating emojis */
+.emoji {
+    position: absolute;
+    font-size: 24px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>😍 Emoji Story Generator</h1>
+
+    <button onclick="generateStory()">Generate Story ✨</button>
+
+    <div id="story">Your love story will appear here 💖</div>
+
+    <button onclick="copyStory()">📋 Copy Story</button>
+</div>
+
+<script>
+const emojis = ["💖","😍","🥰","💌","🌹","✨","🌸","💍","🎉"];
+const events = [
+    "met you at the park",
+    "had our first date under the stars",
+    "shared laughter all night",
+    "walked hand in hand",
+    "sent sweet messages every day",
+    "made unforgettable memories together",
+    "dreamed of a future together",
+    "celebrated special moments with joy"
+];
+
+/* Generate story */
+function generateStory() {
+    let story = `Our love story: `;
+
+    // Random 4 events
+    for (let i = 0; i < 4; i++) {
+        let emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        let event = events[Math.floor(Math.random() * events.length)];
+        story += `${emoji} ${event} `;
+    }
+
+    document.getElementById("story").innerText = story;
+
+    // Create floating emojis
+    for (let i = 0; i < 15; i++) {
+        const em = document.createElement("div");
+        em.className = "emoji";
+        em.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        em.style.left = Math.random() * 100 + "vw";
+        em.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+        document.body.appendChild(em);
+
+        setTimeout(() => em.remove(), 4000);
+    }
+}
+
+/* Copy story to clipboard */
+function copyStory() {
+    const story = document.getElementById("story").innerText;
+    navigator.clipboard.writeText(story).then(() => {
+        alert("Story copied! 💖");
+    });
+}
+</script>
+
+</body>
+</html>

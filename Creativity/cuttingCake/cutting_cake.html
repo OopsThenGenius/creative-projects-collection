@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Virtual Cake Cutting 🎂</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle, #ffb3c6, #ff4d6d);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+/* ---------- Cake ---------- */
+.cake-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.cake {
+    width: 220px;
+    height: 140px;
+    background: linear-gradient(#ffccd5, #ff8fab);
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    box-shadow: 0 10px 0 #e63946;
+    animation: float 2s infinite ease-in-out;
+}
+
+.cake::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    width: 220px;
+    height: 40px;
+    background: #fff0f3;
+    border-radius: 50%;
+}
+
+/* ---------- Candle ---------- */
+.candle {
+    width: 12px;
+    height: 45px;
+    background: white;
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+.flame {
+    width: 14px;
+    height: 20px;
+    background: orange;
+    position: absolute;
+    top: -18px;
+    left: -1px;
+    border-radius: 50%;
+    animation: flicker 0.2s infinite;
+}
+
+/* ---------- Cake Cut ---------- */
+.cut {
+    position: absolute;
+    width: 4px;
+    height: 140px;
+    background: white;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.cake.cut-open .cut {
+    opacity: 1;
+}
+
+.cake.cut-open {
+    animation: split 1s forwards;
+}
+
+/* ---------- Text ---------- */
+h1 {
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease;
+}
+
+button {
+    margin-top: 30px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #ff006e;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.message {
+    font-size: 2rem;
+    margin-top: 30px;
+    display: none;
+    animation: pop 1s ease;
+}
+
+/* ---------- Animations ---------- */
+@keyframes flicker {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.8); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes split {
+    0% { transform: scaleX(1); }
+    100% { transform: scaleX(0.98); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎂 Cut the Cake 🎂</h1>
+
+<div class="cake-container" onclick="cutCake()">
+    <div class="candle" id="candle">
+        <div class="flame" id="flame"></div>
+    </div>
+
+    <div class="cake" id="cake">
+        <div class="cut"></div>
+    </div>
+</div>
+
+<button onclick="blowCandle()">💨 Blow Candle</button>
+
+<div class="message" id="message">
+    🎉 Happy Birthday 🎉<br>
+    May all your wishes come true ✨
+</div>
+
+<script>
+let candleBlown = false;
+let cakeCut = false;
+
+function blowCandle() {
+    document.getElementById('flame').style.display = 'none';
+    candleBlown = true;
+}
+
+function cutCake() {
+    if (!candleBlown) {
+        alert("Blow the candle first 🎈");
+        return;
+    }
+
+    if (!cakeCut) {
+        document.getElementById('cake').classList.add('cut-open');
+        document.getElementById('message').style.display = 'block';
+        cakeCut = true;
+    }
+}
+</script>
+
+</body>
+</html>

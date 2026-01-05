@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Heart with Beat</title>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #111;
+  flex-direction: column;
+  font-family: monospace;
+  color: white;
+}
+
+.pixel-heart {
+  display: grid;
+  grid-template-columns: repeat(16, 15px);
+  grid-gap: 2px;
+  animation: heartbeat 1s infinite;
+}
+
+.pixel-heart div {
+  width: 15px;
+  height: 15px;
+  background: transparent;
+}
+
+.pixel-heart .red {
+  background: red;
+}
+
+/* Heartbeat scaling animation */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25%, 75% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+}
+
+.heartbeat-text {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #ff4d4d;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; }
+  50% { opacity:0.5; }
+}
+</style>
+</head>
+<body>
+
+<div class="pixel-heart" id="pixelHeart">
+  <!-- Pixel heart pattern (16x16 grid) -->
+  <!-- Use class="red" for heart pixels, empty div for empty spaces -->
+  <div></div><div></div><div></div><div class="red"></div><div class="red"></div><div></div><div></div><div></div><div></div><div class="red"></div><div class="red"></div><div></div><div></div><div></div><div></div><div></div>
+  <div></div><div></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div></div><div></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div></div><div></div><div></div><div></div>
+  <div></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div></div><div></div><div></div>
+  <div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div></div><div></div>
+  <div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div></div><div></div><div></div>
+  <div></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div></div><div></div><div></div><div></div>
+  <div></div><div></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div></div><div></div><div></div><div></div><div></div>
+  <div></div><div></div><div></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div class="red"></div><div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+
+<div class="heartbeat-text">💓 Pixel Heartbeat</div>
+
+<audio id="heartbeatAudio" src="https://www.soundjay.com/human/heartbeat-01.mp3"></audio>
+
+<script>
+const heart = document.getElementById("pixelHeart");
+const audio = document.getElementById("heartbeatAudio");
+
+// Play heartbeat sound synced with animation
+heart.addEventListener("animationiteration", () => {
+  audio.currentTime = 0;
+  audio.play();
+});
+</script>
+
+</body>
+</html>
